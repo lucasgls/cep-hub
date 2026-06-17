@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using CepHub.Models.DTOs;
+using CepHub.Utils;
 
 namespace CepHub.Services
 {
@@ -10,10 +11,10 @@ namespace CepHub.Services
         private const string UrlViaCep = "https://viacep.com.br/ws/{0}/json/";
 
         private readonly HttpClient _httpClient;
-        private readonly LoggerService _logger;
+        private readonly Logger _logger;
         private readonly CepNormalizer _normalizer;
 
-        public CepService(HttpClient httpClient, LoggerService loggerService, CepNormalizer normalizer)
+        public CepService(HttpClient httpClient, Logger loggerService, CepNormalizer normalizer)
         {
             _httpClient = httpClient;
             _logger = loggerService;
