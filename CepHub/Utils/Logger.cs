@@ -1,9 +1,4 @@
 ﻿using CepHub.Models.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CepHub.Utils
 {
@@ -12,7 +7,12 @@ namespace CepHub.Utils
         private readonly string _caminho;
         public Logger()
         {
-            _caminho = @"C:\Users\LucasGabrielLimaSilv\CSharp\CepHub\CepHub\Data\RegistroLogs.txt";
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var dataDirectory = Path.Combine(baseDirectory, "Data");
+
+            Directory.CreateDirectory(dataDirectory); 
+
+            _caminho = Path.Combine(dataDirectory, "RegistroLogs.txt");
         }
 
         public void GravarLog(ViaCepDto endereco)

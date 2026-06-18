@@ -1,16 +1,11 @@
-﻿using CepHub.Models;
-using CepHub.Models.DTOs;
+﻿using CepHub.Models.DTOs;
 using CepHub.Services;
 using CepHub.Utils;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace CepHub.View
 {
     public class Menu
     {
-        // Simulando injeção de dependência
         private static readonly HttpClient httpClient = new HttpClient();
         private static readonly Logger logger = new Logger();
         private static readonly CepNormalizer cepNormalizer = new CepNormalizer();

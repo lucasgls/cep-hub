@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace CepHub.Utils
 {
@@ -14,7 +9,7 @@ namespace CepHub.Utils
             if (string.IsNullOrEmpty(cep))
                 throw new ArgumentException("O CEP não pode ser nulo, conter espacos em branco ou vazio.");
             
-            string cepFormatado = Regex.Replace(cep, @"\D", ""); // Remove caracteres não numéricos
+            string cepFormatado = Regex.Replace(cep, @"\D", ""); 
 
             if(cepFormatado.Length != 8)
                 throw new ArgumentException("O CEP deve conter exatamente 8 dígitos numéricos.");
