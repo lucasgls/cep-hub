@@ -6,11 +6,11 @@ namespace CepHub.View
 {
     public class Menu
     {
-        private static readonly HttpClient httpClient = new HttpClient();
-        private static readonly Logger logger = new Logger();
-        private static readonly CepNormalizer cepNormalizer = new CepNormalizer();
+        private static readonly HttpClient _httpClient = new HttpClient();
+        private static readonly Logger _logger = new Logger();
+        private static readonly CepNormalizer _cepNormalizer = new CepNormalizer();
 
-        private static readonly CepService cepService = new CepService(httpClient, logger, cepNormalizer);
+        private static readonly CepService _cepService = new CepService(_httpClient, _logger, _cepNormalizer);
 
         public async Task Run()
         {
@@ -52,7 +52,7 @@ namespace CepHub.View
 
             try
             {
-                var endereco = await cepService.ConsultarCepAsync(cep);
+                var endereco = await _cepService.ConsultarCepAsync(cep);
                 ExibirEndereco(endereco);
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace CepHub.View
         private void ListarEnderecos()
         {
             Console.WriteLine("\nEndereços consultados:");
-            logger.ListarLogs();
+            _logger.ListarLogs();
         }
     }
 }
