@@ -1,6 +1,7 @@
-﻿using System.Text.Json;
+﻿using CepHub.Models;
 using CepHub.Models.DTOs;
 using CepHub.Utils;
+using System.Text.Json;
 
 namespace CepHub.Services
 {
@@ -45,10 +46,6 @@ namespace CepHub.Services
             {
                 throw new HttpRequestException("Erro ao consultar CEP: " + e);
             }
-            catch (InvalidOperationException e)
-            {
-                throw new Exception("Erro inesperado ao consultar CEP: " + e);
-            }
             catch (TaskCanceledException e)
             {
                 throw new Exception("A requisição para consultar o CEP foi cancelada: " + e);
@@ -60,24 +57,25 @@ namespace CepHub.Services
             if (endereco == null)
                 throw new Exception("Resposta inválida.");
 
-            if (endereco.erro == true)
+            if (endereco.erro.Equals("true")) 
                 throw new Exception("CEP inválido.");
         }
 
         private ViaCepDto Desserializar(string json)
         {
+            ViaCepDto endereco;
             try
             {
-                var endereco = JsonSerializer.Deserialize<ViaCepDto>(json);
-
-                ValidarCepExistente(endereco);
-
-                return endereco;
+                endereco = JsonSerializer.Deserialize<ViaCepDto>(json);
             }
             catch (JsonException e)
             {
                 throw new JsonException("Erro ao desserializar JSON: " + e.Message);
             }
+
+            ValidarCepExistente(endereco);
+
+            return endereco;
         }
 
         private ResponseEnderecoDto Tranformador(ViaCepDto endereco)
