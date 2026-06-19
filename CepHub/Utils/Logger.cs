@@ -8,7 +8,7 @@ namespace CepHub.Utils
         public Logger()
         {
             var directoryBase = Directory.GetCurrentDirectory();
-            var dataDirectory = Path.Combine(directoryBase,"..","..","..", "Data");
+            var dataDirectory = Path.Combine(directoryBase, "Data");
 
             Directory.CreateDirectory(dataDirectory);
 
@@ -26,15 +26,20 @@ namespace CepHub.Utils
             }
         }
 
-        public void ListarLogs()
+        public List<string> ListarLogs()
         {
-            using(StreamReader streamReader = new StreamReader(_caminho))
+            var linhas = new List<string>();
+
+            using (StreamReader streamReader = new StreamReader(_caminho))
             {
-                while(!streamReader.EndOfStream)
+                while (!streamReader.EndOfStream)
                 {
-                    Console.WriteLine(streamReader.ReadLine());       
+                    linhas.Add(streamReader.ReadLine());
                 }
             }
+
+            return linhas;
         }
+
     }
 }

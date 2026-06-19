@@ -52,13 +52,14 @@ namespace CepHub.Services
             }
         }
 
-        private void ValidarCepExistente(ViaCepDto endereco)
+        public void ValidarCepExistente(ViaCepDto endereco)
         {
             if (endereco == null)
-                throw new Exception("Resposta inválida.");
+                throw new ArgumentException("Resposta inválida.");
 
-            if (endereco.erro.Equals("true")) 
-                throw new Exception("CEP inválido.");
+            if (!string.IsNullOrEmpty(endereco.erro) && endereco.erro.ToLower() == "true")
+                throw new ArgumentException("CEP inválido.");
+            
         }
 
         private ViaCepDto Desserializar(string json)
