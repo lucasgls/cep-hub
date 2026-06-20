@@ -1,5 +1,1 @@
-[18-06-2026 17:44:52] 13188-011 | Rua di Cavalcante, Jardim Amanda I, Hortolândia - SP (Ibge: 3519071 | Gia: 7481 | Ddd: 19 | Siafi: 2951)
-[19-06-2026 09:18:57] 13188-011 | Rua di Cavalcante, Jardim Amanda I, Hortolândia - SP (Ibge: 3519071 | Gia: 7481 | Ddd: 19 | Siafi: 2951)
-[19-06-2026 09:25:12] 13188-011 | Rua di Cavalcante, Jardim Amanda I, Hortolândia - SP (Ibge: 3519071 | Gia: 7481 | Ddd: 19 | Siafi: 2951)
-[19-06-2026 09:25:56] 13188-011 | Rua di Cavalcante, Jardim Amanda I, Hortolândia - SP (Ibge: 3519071 | Gia: 7481 | Ddd: 19 | Siafi: 2951)
-[19-06-2026 09:33:06] 13188-011 | Rua di Cavalcante, Jardim Amanda I, Hortolândia - SP (Ibge: 3519071 | Gia: 7481 | Ddd: 19 | Siafi: 2951)
+[20-06-2026 08:29:53] 13188-011 | Rua di Cavalcante, Jardim Amanda I, Hortolândia - SP (Ibge: 3519071 | Gia: 7481 | Ddd: 19 | Siafi: 2951)

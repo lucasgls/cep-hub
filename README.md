@@ -2,23 +2,21 @@
 
 > ⚠️ **Em desenvolvimento**
 
-Aplicação de console em C# (.NET) para consulta de endereços por CEP, utilizando a API pública [ViaCEP](https://viacep.com.br/). Desenvolvida como desafio do Forma.
+API REST em C# (.NET 6) para consulta de endereços por CEP, utilizando a API pública [ViaCEP](https://viacep.com.br/). Desenvolvida como desafio do Forma.
 
 ***
 
 ## 🧠 Plano de desenvolvimento
 <center><img width="307" height="394" alt="image" src="https://github.com/user-attachments/assets/59b80835-c20a-4b3f-b520-2d7c762fdc45" />
 
-
 ## ✅ Funcionalidades
 
-- Consulta de endereço a partir de um CEP
+- Consulta de endereço a partir de um CEP via endpoint REST
 - Normalização automática do CEP informado
 - Registro de logs com timestamp a cada consulta realizada
-- Listagem do histórico de consultas
+- Listagem do histórico de consultas via endpoint REST
 
 ***
-
 
 ## ▶️ Como executar
 
@@ -32,6 +30,20 @@ cd cep-hub
 ```bash
 dotnet run --project CepHub
 ```
+
+3. Acesse a documentação Swagger em:
+```
+http://localhost:<porta>
+```
+
+***
+
+## 🔗 Endpoints
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| `GET` | `/api/cep/{cep}` | Consulta o endereço de um CEP |
+| `GET` | `/api/cep/logs` | Retorna o histórico de consultas |
 
 ***
 
@@ -48,4 +60,4 @@ A cada consulta, uma entrada é gravada automaticamente em `CepHub/Data/Registro
 ## 🛠️ Tecnologias
 
 - C# / .NET 6
-- `HttpClient`
+- ASP.NET Core Web API

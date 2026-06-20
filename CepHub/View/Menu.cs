@@ -61,7 +61,7 @@ namespace CepHub.View
             }
         }
 
-        private void ExibirEndereco(ResponseEnderecoDto endereco)
+        public void ExibirEndereco(ResponseEnderecoDto endereco)
         {
             Console.WriteLine("\n|Resultado:");
             Console.WriteLine($"|CEP: {endereco.Cep}");
