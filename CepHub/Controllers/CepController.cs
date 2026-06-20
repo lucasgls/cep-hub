@@ -1,13 +1,6 @@
-﻿using CepHub.Models.DTOs;
-using CepHub.Services;
+﻿using CepHub.Services;
 using CepHub.Utils;
-using CepHub.View;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CepHub.Controllers
 {
@@ -25,44 +18,32 @@ namespace CepHub.Controllers
         }
 
         [HttpGet("{cep}")]
-        public async Task<IActionResult> GetCepz(string cep)
+        public async Task<IActionResult> GetCep(string cep)
         {
             try
             {
                 var cepData = await _cepService.ConsultarCepAsync(cep);
-
-                return Ok(new
+                return Ok(cepData);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new
                 {
-                    cep = cepData.Cep,
-                    logradouro = cepData.Logradouro,
-                    complemento = cepData.Complemento,
-                    bairro = cepData.Bairro,
-                    localidade = cepData.Localidade,
-                    uf = cepData.Uf
+                    message = ex.Message
                 });
             }
             catch (HttpRequestException)
             {
-                return StatusCode(503, new
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new
                 {
-                    message = "Serviço indisponível.",
-                    details = "Erro ao acessar a API de CEP."
-                });
-            }
-            catch (ArgumentException)
-            {
-                return StatusCode(400, new
-                {
-                    message = "Requisição inválida.",
-                    details = "O CEP informado é inválido."
+                    message = "Serviço indisponível."
                 });
             }
             catch (Exception)
             {
-                return StatusCode(500, new
+                return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    message = "Erro interno.",
-                    details = "Ocorreu um erro inesperado."
+                    message = "Erro interno."
                 });
             }
         }
@@ -74,16 +55,18 @@ namespace CepHub.Controllers
             {
                 var logs = _logger.ListarLogs();
 
-                if (logs == null)
-                    return NotFound("Nenhum log encontrado.");
+                if (logs.Count == 0)
+                    return NoContent();
 
                 return Ok(logs);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(500, $"Erro ao buscar logs: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = "Erro interno."
+                });
             }
         }
-
     }
 }
