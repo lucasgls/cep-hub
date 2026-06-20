@@ -28,18 +28,18 @@ namespace CepHub.Utils
 
         public List<string> ListarLogs()
         {
+            if (!File.Exists(_caminho))
+                return new List<string>();
+
             var linhas = new List<string>();
 
             using (StreamReader streamReader = new StreamReader(_caminho))
             {
                 while (!streamReader.EndOfStream)
-                {
                     linhas.Add(streamReader.ReadLine());
-                }
             }
 
             return linhas;
         }
-
     }
 }
